@@ -873,8 +873,10 @@ class Downloader:
                                 torrent_episodes, torrent_path = self.get_torrent_episodes(
                                     url=item.enclosure,
                                     page_url=item.page_url)
-                                log.info(f"【Downloader】{torrent_episodes}")
-                                continue
+                                if not torrent_episodes:
+                                    continue
+                                else:
+                                    item_episodes = torrent_episodes
                             # 为需要集的子集则下载
                             if set(item_episodes).issubset(set(need_episodes)):
                                 _, download_id = __download(item)
