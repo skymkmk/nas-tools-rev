@@ -1283,6 +1283,7 @@ class Downloader:
             if not meta.begin_episode:
                 continue
             episodes = list(set(episodes).union(set(meta.get_episode_list())))
+        log.info("【Downloader】%s" % len(episodes))
         return episodes, file_path
 
     def get_download_setting(self, sid=None):
