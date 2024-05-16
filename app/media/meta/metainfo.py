@@ -43,7 +43,7 @@ def MetaInfo(title,
         for i in gid:
             rev_title, msg, used_info = WordsHelper(gid=i).process(rev_title)
             if subtitle:
-                subtitle, _, _ = WordsHelper().process(subtitle)
+                subtitle, _, _ = WordsHelper(gid=i).process(subtitle)
             if msg:
                 for msg_item in msg:
                     log.warn("【Meta】%s" % msg_item)
