@@ -730,6 +730,7 @@ class Downloader:
         return_items = []
         # 返回按季、集数倒序排序的列表
         download_list = Torrent().get_download_list(media_list, self._download_order)
+        log.info("【Downloader】%s" % download_list)
 
         def __download(download_item, torrent_file=None, tag=None, is_paused=None):
             """
@@ -810,6 +811,7 @@ class Downloader:
                         if not need_seasons.get(need_tmdbid):
                             need_seasons[need_tmdbid] = []
                         need_seasons[need_tmdbid].append(tv.get("season") or 1)
+            log.info("【Downloader】%s" % need_seasons)
             # 查找整季包含的种子，只处理整季没集的种子或者是集数超过季的种子
             for need_tmdbid, need_season in need_seasons.items():
                 for item in download_list:
