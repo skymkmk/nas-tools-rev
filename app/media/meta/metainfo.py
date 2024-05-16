@@ -104,7 +104,7 @@ def MetaInfo(title,
     meta_info.org_string = org_title
     # 设置识别词处理后名称
     meta_info.rev_string = rev_title
-    meta_info.set_tmdb_info(file_media_info)
+    # meta_info.set_tmdb_info(file_media_info)
 
     return meta_info
 

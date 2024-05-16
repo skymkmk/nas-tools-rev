@@ -743,6 +743,9 @@ class Media:
             return None
         if mtype:
             meta_info.type = mtype
+        tmdb_info = self.get_tmdb_info_by_meta_info(meta_info=meta_info, cache=cache, chinese=chinese, append_to_response=append_to_response, strict=strict)
+        if tmdb_info:
+            meta_info.set_tmdb_info(tmdb_info)
         return meta_info
 
     def __insert_media_cache(self, media_key, file_media_info):
