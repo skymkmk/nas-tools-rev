@@ -825,8 +825,6 @@ class Downloader:
                                 torrent_episodes, torrent_path = self.get_torrent_episodes(
                                     url=item.enclosure,
                                     page_url=item.page_url)
-                                log.info(
-                                        f"【Downloader】{__get_season_episodes(need_tmdbid, item_season[0])}")
                                 if not torrent_episodes \
                                         or len(torrent_episodes) >= __get_season_episodes(need_tmdbid, item_season[0]):
                                     _, download_id = __download(download_item=item, torrent_file=torrent_path)
@@ -856,6 +854,7 @@ class Downloader:
                     # 缺失整季的转化为缺失集进行比较
                     if not need_episodes:
                         need_episodes = list(range(1, total_episodes + 1))
+                    log.info(f"【Downloader】{download_list}")
                     for item in download_list:
                         if item.type == MediaType.MOVIE:
                             continue
@@ -864,9 +863,11 @@ class Downloader:
                                 continue
                             # 只处理单季含集的种子
                             item_season = item.get_season_list()
+                            log.info(f"【Downloader】{item_season} : {item_season[0]}")
                             if len(item_season) != 1 or item_season[0] != need_season:
                                 continue
                             item_episodes = item.get_episode_list()
+                            log.info(f"【Downloader】{item_episodes}")
                             if not item_episodes:
                                 continue
                             # 为需要集的子集则下载
